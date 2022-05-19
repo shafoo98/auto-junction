@@ -1,0 +1,61 @@
+const products = [
+  {
+    name: 'Airpods Wireless Bluetooth Headphones',
+    image: '/images/airpods.jpg',
+    description:
+      'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
+    brand: 'Apple',
+    category: 'Electronics',
+    price: 89.99,
+    countInStock: 3,
+    rating: 5.0,
+    numReviews: 10,
+  },
+  {
+    name: 'Mitsubishi Lancer Evolution IX',
+    image: '/images/lancer.jpg',
+    description: 'The legendary Mistubishi Lancer Evo IX. ',
+    brand: 'Mitsubishi',
+    category: 'Cars',
+    price: 599.99,
+    countInStock: 10,
+    rating: 3.0,
+    numReviews: 5,
+  },
+  {
+    name: 'Cannon EOS 80D DSLR Camera',
+    image: '/images/camera.jpg',
+    description:
+      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
+    brand: 'Cannon',
+    category: 'Electronics',
+    price: 9299,
+    countInStock: 0,
+    rating: 4.0,
+    numReviews: 50,
+  },
+  {
+    name: 'Toyota Corolla',
+    image: '/images/corolla.jpg',
+    description: 'Toyota Corolla 2005. Fresh condition',
+    brand: 'Toyota',
+    category: 'Cars',
+    price: 3999,
+    countInStock: 10,
+    rating: 2.5,
+    numReviews: 6,
+  },
+  {
+    name: 'Ford Focus',
+    image: '/images/focus.jpg',
+    description: 'Mint Condtion Focus for sale',
+    brand: 'Ford',
+    category: 'Cars',
+    price: 1229,
+    countInStock: 0,
+    rating: 0.5,
+    numReviews: 10,
+  },
+]
+
+export default products
