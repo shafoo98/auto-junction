@@ -23,8 +23,8 @@ const Header = () => {
           <LinkContainer to='/'>
             <Navbar.Brand>Auto Junction</Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
+          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+          <Navbar.Collapse id='responsive-navbar-nav'>
             {userInfo && (
               <Route
                 render={({ history }) => (
