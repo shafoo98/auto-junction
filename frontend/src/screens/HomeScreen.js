@@ -1,62 +1,75 @@
-import { React, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
-import Product from '../components/Product'
-import { listProducts } from '../actions/productActions'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import Paginate from '../components/Paginate'
-import ProductCarousel from '../components/ProductCarousel'
-import { Helmet } from 'react-helmet'
+import { React, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Row, Col } from "react-bootstrap";
+import Product from "../components/Product";
+import { listProducts } from "../actions/productActions";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+import Paginate from "../components/Paginate";
+import ProductCarousel from "../components/ProductCarousel";
+import { Helmet } from "react-helmet";
 
 const HomeScreen = ({ history, match }) => {
-  const keyword = match.params.keyword
+  const categories = ["Engine Oil", "Filters", "Transmission Fluid", "Spark Plugs", "Brake Pads", "Additives"];
 
-  const pageNumber = match.params.pageNumber || 1
+  const keyword = match.params.keyword;
 
-  const dispatch = useDispatch()
+  const pageNumber = match.params.pageNumber || 1;
 
-  const productList = useSelector((state) => state.productList)
+  const dispatch = useDispatch();
 
-  const { loading, error, products, page, pages } = productList
+  const productList = useSelector((state) => state.productList);
 
-  const userLogin = useSelector((state) => state.userLogin)
+  const { loading, error, products, page, pages } = productList;
 
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+
+  const { userInfo } = userLogin;
 
   useEffect(() => {
-    dispatch(listProducts(keyword, pageNumber))
-  }, [dispatch, history, keyword, pageNumber, userInfo])
+    dispatch(listProducts(keyword, pageNumber));
+  }, [dispatch, history, keyword, pageNumber, userInfo]);
 
   return (
     <>
       <Helmet>
         <title>Auto Junction: Home</title>
-        <meta name='description' content='Helmet application' />
+        <meta name="description" content="Helmet application" />
       </Helmet>
       {!keyword && <ProductCarousel></ProductCarousel>}
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant='danger'>{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
         <>
           <Row>
-            {products.map((product) => (
-              <Col key={product._id} sm={6} md={5} lg={4}>
-                <Product product={product} />
-              </Col>
+            {categories.map((category) => (
+              <div>
+                <Row>
+                <h1 className='display-5 fw-bold'>{category}</h1>
+                  {products.map((product) =>
+                    category === product.category ? (
+                        <Col key={product._id} sm={12} md={6} lg={6}>
+                          <Product product={product} />
+                        </Col>
+                    ) : (
+                      <div> </div>
+                    )
+                  )}
+                </Row>
+              </div>
             ))}
           </Row>
           <Paginate
             pages={pages}
             page={page}
-            keyword={keyword ? keyword : ''}
+            keyword={keyword ? keyword : ""}
           ></Paginate>
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
