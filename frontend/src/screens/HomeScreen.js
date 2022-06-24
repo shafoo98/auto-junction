@@ -43,24 +43,6 @@ const HomeScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Row>
-            {categories.map((category) => (
-              <div>
-                <Row>
-                <h1 className='display-5 fw-bold'>{category}</h1>
-                  {products.map((product) =>
-                    category === product.category ? (
-                        <Col key={product._id} sm={12} md={6} lg={6}>
-                          <Product product={product} />
-                        </Col>
-                    ) : (
-                      <div> </div>
-                    )
-                  )}
-                </Row>
-              </div>
-            ))}
-          </Row>
           <Paginate
             pages={pages}
             page={page}
