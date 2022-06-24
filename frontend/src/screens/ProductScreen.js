@@ -72,11 +72,11 @@ const ProductScreen = ({ history, match }) => {
             <meta name='description' content='Helmet application' />
           </Helmet>
           <Row>
-            <Col md={6}>
-              <Image src={product.image} alt={product.name} fluid />
+            <Col md={6} className='d-flex align-items-center' >
+              <Image src={product.image} alt={product.name} fluid className='user-select-none' onContextMenu={(e) => e.preventDefault()}/>
             </Col>
             <Col md={3}>
-              <ListGroup variant='flush'>
+              <ListGroup variant='flush' className='user-select-none'>
                 <ListGroup.Item>
                   <h2>{product.name}</h2>
                 </ListGroup.Item>
@@ -166,6 +166,7 @@ const ProductScreen = ({ history, match }) => {
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
+                {userInfo.isAdmin ? <></> : (
                 <ListGroup.Item>
                   <h3>Write a review for the product</h3>
                   {successProductReview && (
@@ -220,6 +221,7 @@ const ProductScreen = ({ history, match }) => {
                     </Message>
                   )}
                 </ListGroup.Item>
+                )}
               </ListGroup>
             </Col>
           </Row>

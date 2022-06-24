@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, Container, NavDropdown, Row, Col } from 'react-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 
@@ -25,13 +25,6 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
-            {userInfo && (
-              <Route
-                render={({ history }) => (
-                  <SearchBox history={history}></SearchBox>
-                )}
-              ></Route>
-            )}
             <Nav className='ms-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
@@ -76,6 +69,19 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <Container>
+      <Row className='justify-content-md-center'>
+      <Col xs={12} md={6} lg={12}>
+      {userInfo && (
+              <Route
+                render={({ history }) => (
+                  <SearchBox history={history}></SearchBox>
+                )}
+              ></Route>
+            )}
+        </Col>
+      </Row>
+      </Container>
     </header>
   )
 }
