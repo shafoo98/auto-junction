@@ -72,10 +72,10 @@ const ProductScreen = ({ history, match }) => {
             <meta name='description' content='Helmet application' />
           </Helmet>
           <Row>
-            <Col md={6} className='d-flex align-items-center' >
+            <Col sm ={12} md={9} lg={4} className='d-flex align-items-center' >
               <Image src={product.image} alt={product.name} fluid className='user-select-none' onContextMenu={(e) => e.preventDefault()}/>
             </Col>
-            <Col md={3}>
+            <Col md={6} lg={4} className='mt-2'>
               <ListGroup variant='flush' className='user-select-none'>
                 <ListGroup.Item>
                   <h2>{product.name}</h2>
@@ -92,7 +92,7 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col md={3}>
+            <Col md={3} lg={4} className='mt-2'>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>

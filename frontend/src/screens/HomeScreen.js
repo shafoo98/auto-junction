@@ -43,6 +43,13 @@ const HomeScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+        <Row>
+            {products.map((product) => (
+              <Col key={product._id} sm={6} md={5} lg={4}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
           <Paginate
             pages={pages}
             page={page}
