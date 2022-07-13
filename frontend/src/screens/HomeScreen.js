@@ -1,34 +1,29 @@
 import { React, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Row, Col } from "react-bootstrap";
-import Product from "../components/Product";
-import { listProducts } from "../actions/productActions";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import Paginate from "../components/Paginate";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Row, Col, Card} from "react-bootstrap";
 import ProductCarousel from "../components/ProductCarousel";
 import { Helmet } from "react-helmet";
 
 const HomeScreen = ({ history, match }) => {
-  const categories = ["Engine Oil", "Filters", "Transmission Fluid", "Spark Plugs", "Brake Pads", "Additives"];
-
-  const keyword = match.params.keyword;
-
-  const pageNumber = match.params.pageNumber || 1;
-
-  const dispatch = useDispatch();
-
-  const productList = useSelector((state) => state.productList);
-
-  const { loading, error, products, page, pages } = productList;
+  const categories = [
+    "Engine Oil",
+    "Filters",
+    "Transmission Fluid",
+    "Spark Plugs",
+    "Brake Pads",
+    "Additives",
+  ];
 
   const userLogin = useSelector((state) => state.userLogin);
 
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    dispatch(listProducts(keyword, pageNumber));
-  }, [dispatch, history, keyword, pageNumber, userInfo]);
+    if (!userInfo) {
+      history.push("/login");
+    }
+  }, [history, userInfo]);
 
   return (
     <>
@@ -36,27 +31,36 @@ const HomeScreen = ({ history, match }) => {
         <title>Auto Junction: Home</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
-      {!keyword && <ProductCarousel></ProductCarousel>}
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <>
+      <div>
+        <Card className="my-2">
+          <Card.Title>
+            <h1 className="display-2 d-flex justify-content-center">
+              Top Rated Products
+            </h1>
+          </Card.Title>
+        </Card>
+        <ProductCarousel></ProductCarousel>
+      </div>
+      <div>
+        <h1 as="div" className="d-flex justify-content-center display-3">
+          SHOP BY CATEGORIES
+        </h1>
         <Row>
-            {products.map((product) => (
-              <Col key={product._id} sm={6} md={5} lg={4}>
-                <Product product={product} />
+          {categories.map((category) => (
+            <>
+              <Col sm={12} md={9} lg={3}>
+                <Link to={`/${category}`}>
+                  <Card className="my-2 p-2 w-100 rounded">
+                    <Card.Body>
+                      <Card.Text>{category}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Link>
               </Col>
-            ))}
-          </Row>
-          <Paginate
-            pages={pages}
-            page={page}
-            keyword={keyword ? keyword : ""}
-          ></Paginate>
-        </>
-      )}
+            </>
+          ))}
+        </Row>
+      </div>
     </>
   );
 };

@@ -20,6 +20,8 @@ import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import { Helmet } from 'react-helmet'
 import AboutUsScreen from './screens/AboutUsScreen'
+import CategorizedProductsScreen from './screens/CategorizedProductsScreen'
+import SearchedProductScreen from './screens/SearchedProductScreen'
 
 const App = () => {
   return (
@@ -40,6 +42,7 @@ const App = () => {
             <Route path='/register' component={RegisterScreen} />
             <Route path='/profile' component={ProfileScreen} />
             <Route path='/product/:id' component={ProductScreen} />
+            <Route path='/:category' component={CategorizedProductsScreen} />
             <Route path='/cart/:id?' component={CartScreen} />
             <Route path='/admin/userlist' component={UserListScreen} />
             <Route path='/admin/user/:id/edit' component={UserEditScreen} />
@@ -58,7 +61,7 @@ const App = () => {
               component={ProductEditScreen}
             />
             <Route path='/admin/orderlist' component={OrderListScreen} />
-            <Route path='/search/:keyword' component={HomeScreen} exact />
+            <Route path='/search/:keyword' component={SearchedProductScreen} exact />
             <Route path='/page/:pageNumber' component={HomeScreen} exact />
             <Route
               path='/search/:keyword/page/:pageNumber'

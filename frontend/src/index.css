@@ -1,5 +1,6 @@
 main {
-    min-height: 90vh;
+    min-height: 100vh;
+    min-width: 100vw;
 }
 
 h3 {

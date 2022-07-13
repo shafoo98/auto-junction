@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
+      <Navbar bg='light' variant='light' expand='md' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>Auto Junction</Navbar.Brand>
@@ -26,6 +26,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav className='ms-auto'>
+            <div className='d-flex justify-content-around'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
                   <i className='fas fa-shopping-cart'></i> Cart
@@ -65,13 +66,14 @@ const Header = () => {
                   </LinkContainer>
                 </NavDropdown>
               )}
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
       <Container>
       <Row className='justify-content-md-center'>
-      <Col xs={12} md={6} lg={12}>
+      <Col xs={12} md={9} lg={9}>
       {userInfo && (
               <Route
                 render={({ history }) => (

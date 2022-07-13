@@ -16,7 +16,7 @@ const SearchBox = ({ history }) => {
 
   return (
     <>
-      <Form onSubmit={submitHandler} className='d-flex mt-3 mx-auto w-75'>
+      <Form onSubmit={submitHandler} className='d-flex mt-3 mx-auto w-auto'>
         <Form.Control
           type='text'
           name='q'
