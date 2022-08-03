@@ -1,11 +1,15 @@
 import { React, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Row, Col, Card} from "react-bootstrap";
+import { Row, Col, Card, Image } from "react-bootstrap";
 import ProductCarousel from "../components/ProductCarousel";
 import { Helmet } from "react-helmet";
+import MessengerSendToMessenger from "react-messenger-send-to-messenger";
 
 const HomeScreen = ({ history, match }) => {
+  const fbPageID = process.env.FACEBOOK_PAGE_ID;
+  const fbAppID = process.env.FACEBOOK_APP_ID;
+
   const categories = [
     "Engine Oil",
     "Filters",
@@ -31,10 +35,16 @@ const HomeScreen = ({ history, match }) => {
         <title>Auto Junction: Home</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
+      <MessengerSendToMessenger
+        pageId={fbPageID}
+        appId={fbAppID}
+      ></MessengerSendToMessenger>
+      <Image fluid="true" src="\uploads\Free Delivery Photo.jpg"></Image>
+      <div className="my-5"></div>
       <div>
         <Card className="my-2">
           <Card.Title>
-            <h1 className="display-2 d-flex justify-content-center">
+            <h1 className="display-1 d-flex justify-content-center">
               Top Rated Products
             </h1>
           </Card.Title>
@@ -42,7 +52,7 @@ const HomeScreen = ({ history, match }) => {
         <ProductCarousel></ProductCarousel>
       </div>
       <div>
-        <h1 as="div" className="d-flex justify-content-center display-3">
+        <h1 as="div" className="d-flex justify-content-center display-2">
           SHOP BY CATEGORIES
         </h1>
         <Row>
@@ -52,7 +62,7 @@ const HomeScreen = ({ history, match }) => {
                 <Link to={`/${category}`}>
                   <Card className="my-2 p-2 w-100 rounded">
                     <Card.Body>
-                      <Card.Text>{category}</Card.Text>
+                      <Card.Text className="fs-3">{category}</Card.Text>
                     </Card.Body>
                   </Card>
                 </Link>

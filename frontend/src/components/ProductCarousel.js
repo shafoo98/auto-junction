@@ -27,7 +27,7 @@ const ProductCarousel = () => {
           <Row>
             <Link to={`/product/${product._id}`}>
               <Carousel.Caption className="carousel-caption">
-                <h2>
+                <h2 className="fs-2">
                   {product.name} (৳{product.price} BDT)
                 </h2>
               </Carousel.Caption>

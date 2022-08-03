@@ -26,7 +26,7 @@ const PlaceOrderScreen = ({ history }) => {
     .reduce((acc, item) => acc + item.price * item.quantity, 0)
     .toFixed(2)
 
-  cart.shippingPrice = cart.itemsPrice > 1000 ? 200 : 100
+  cart.shippingPrice = 0
 
   cart.totalPrice = (
     Number(cart.itemsPrice) + Number(cart.shippingPrice)
