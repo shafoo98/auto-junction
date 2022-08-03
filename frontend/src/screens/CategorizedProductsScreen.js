@@ -35,7 +35,7 @@ const CategorizedProductsScreen = ({ history, match }) => {
   return (
     <>
       <Helmet>
-        <title>Auto Junction: Category</title>
+        <title>Auto Junction</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
       {loading ? (
