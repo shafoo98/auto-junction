@@ -2,14 +2,15 @@ import path from 'path'
 import express from 'express'
 import multer from 'multer'
 const router = express.Router()
+import dotenv from 'dotenv'
 import { v2 as cloudinary } from 'cloudinary'
 
-const cloudinary_url = process.env.CLOUDINARY_URL
+dotenv.config()
 
 cloudinary.config({
-  cloud_name: "auto-junction-store",
-  api_key: "591384915411192",
-  api_secret: "MKwY0XraLNo8CGczrz994wd3NUg",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 router.route("/").post((req, res, next) => {
