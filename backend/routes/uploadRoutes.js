@@ -1,6 +1,4 @@
-import path from 'path'
 import express from 'express'
-import multer from 'multer'
 const router = express.Router()
 import dotenv from 'dotenv'
 import { v2 as cloudinary } from 'cloudinary'
