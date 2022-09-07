@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Carousel, Image, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,12 @@ const ProductCarousel = () => {
   const productTopRated = useSelector((state) => state.productTopRated);
   const { loading, error, products } = productTopRated;
 
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
   useEffect(() => {
     dispatch(listTopProducts());
   }, [dispatch]);
@@ -21,7 +27,12 @@ const ProductCarousel = () => {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <Carousel className="bg-dark" fade>
+    <Carousel
+      className="my-3 bg-dark"
+      activeIndex={index}
+      onSelect={handleSelect}
+      slide={false}
+    >
       {products.map((product) => (
         <Carousel.Item key={product._id} interval={2000}>
           <Row>
@@ -33,9 +44,15 @@ const ProductCarousel = () => {
               </Carousel.Caption>
             </Link>
           </Row>
-          <Row className='mt-5 d-flex mx-auto'>
+          <Row className="mt-5 d-flex mx-auto">
             <Col>
-              <Image src={product.image} alt={product.name} style={{width: '25rem', height:'20rem'}} fluid/>
+              <Image
+                className="d-block"
+                style={{ width: "25rem", height: "20rem" }}
+                src={product.image}
+                alt={product.name}
+                rounded={false}
+              />
             </Col>
           </Row>
         </Carousel.Item>

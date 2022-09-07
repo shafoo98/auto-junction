@@ -4,11 +4,8 @@ import { useSelector } from "react-redux";
 import { Row, Col, Card, Image } from "react-bootstrap";
 import ProductCarousel from "../components/ProductCarousel";
 import { Helmet } from "react-helmet";
-import MessengerSendToMessenger from "react-messenger-send-to-messenger";
 
 const HomeScreen = ({ history, match }) => {
-  const fbPageID = process.env.FACEBOOK_PAGE_ID;
-  const fbAppID = process.env.FACEBOOK_APP_ID;
 
   const categories = [
     "Engine Oil",
@@ -35,10 +32,6 @@ const HomeScreen = ({ history, match }) => {
         <title>Auto Junction: Home</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
-      <MessengerSendToMessenger
-        pageId={fbPageID}
-        appId={fbAppID}
-      ></MessengerSendToMessenger>
       <Image fluid="true" src="\uploads\Free Delivery Photo.jpg"></Image>
       <div className="my-5"></div>
       <div>
@@ -49,7 +42,7 @@ const HomeScreen = ({ history, match }) => {
             </h1>
           </Card.Title>
         </Card>
-        <ProductCarousel></ProductCarousel>
+        <ProductCarousel/>
       </div>
       <div>
         <h1 as="div" className="d-flex justify-content-center display-2">
