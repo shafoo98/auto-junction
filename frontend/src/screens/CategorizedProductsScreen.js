@@ -47,7 +47,7 @@ const CategorizedProductsScreen = ({ history, match }) => {
           <Row>
             {products.map((product) =>
               category === product.category && (
-                <Col key={product._id} sm={6} md={5} lg={4}>
+                <Col key={product._id} sm={12} md={6} lg={4}>
                   <Product product={product} />
                 </Col>
               ) 

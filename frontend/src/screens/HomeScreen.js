@@ -1,19 +1,30 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Row, Col, Card, Image } from "react-bootstrap";
+import { Row, Col, Card, Image, Carousel } from "react-bootstrap";
 import ProductCarousel from "../components/ProductCarousel";
 import { Helmet } from "react-helmet";
 
 const HomeScreen = ({ history, match }) => {
 
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
   const categories = [
     "Engine Oil",
+    "Accesories",
     "Filters",
     "Transmission Fluid",
     "Spark Plugs",
     "Brake Pads",
     "Additives",
+    "Coolants",
+    "Brake Fluid",
+    "Power Steering Fluid",
+    "Suspension Parts"
   ];
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -32,9 +43,27 @@ const HomeScreen = ({ history, match }) => {
         <title>Auto Junction: Home</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
-      <Image fluid="true" src="\uploads\Free Delivery Photo.jpg"></Image>
-      <div className="my-5"></div>
       <div>
+        <Carousel activeIndex={index} onSelect={handleSelect}>
+          <Carousel.Item>
+            <Image
+              className="d-block w-100 h-50"
+              src="/uploads/Auto Junction Cover Photo.jpg"
+              alt="Cover Photo"
+              rounded='false'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <Image
+              className="d-block w-100 h-50"
+              src="/uploads/Free Delivery Photo.jpg"
+              alt="Cover Photo"
+              rounded='false'
+            />
+          </Carousel.Item>
+        </Carousel>
+      </div>
+      <div className="mt-5">
         <Card className="my-2">
           <Card.Title>
             <h1 className="display-1 d-flex justify-content-center">
@@ -42,7 +71,7 @@ const HomeScreen = ({ history, match }) => {
             </h1>
           </Card.Title>
         </Card>
-        <ProductCarousel/>
+        <ProductCarousel />
       </div>
       <div>
         <h1 as="div" className="d-flex justify-content-center display-2">
@@ -51,11 +80,13 @@ const HomeScreen = ({ history, match }) => {
         <Row>
           {categories.map((category) => (
             <>
-              <Col sm={12} md={9} lg={3}>
+              <Col sm={12} md={9} lg={6}>
                 <Link to={`/${category}`}>
-                  <Card className="my-2 p-2 w-100 rounded">
+                  <Card className="my-2 p-2 w-100 rounded shadow-lg">
                     <Card.Body>
-                      <Card.Text className="fs-3">{category}</Card.Text>
+                      <Card.Text className="fs-3 text-center">
+                        {category}
+                      </Card.Text>
                     </Card.Body>
                   </Card>
                 </Link>
