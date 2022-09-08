@@ -62,7 +62,7 @@ const HomeScreen = ({ history, match }) => {
         )}
       </Container>
       <Accordion className="my-5 ms-3" defaultActiveKey="1">
-        <Card className="w-50 mx-auto">
+        <Card className="mx-auto text-center">
           <Accordion.Toggle
             as="h5"
             eventKey="0"
@@ -73,14 +73,14 @@ const HomeScreen = ({ history, match }) => {
           </Accordion.Toggle>
         </Card>
         <Accordion.Collapse eventKey="0">
-          <Row>
+          <Row className="mt-3">
             {categories.map((category) => (
-              <Col sm={12} md={4} className="my-2">
+              <Col xs={4} className="my-4">
                 <Link
                   to={`/category/${category}`}
                   style={{ textDecoration: "none", cursor: "pointer" }}
                 >
-                  <h1 className="display-5 text-center">{category}</h1>
+                  <h5 className="text-center">{category}</h5>
                 </Link>
               </Col>
             ))}
@@ -110,7 +110,7 @@ const HomeScreen = ({ history, match }) => {
         </Carousel.Item>
       </Carousel>
       <div className="mt-5">
-        <Card className="mb-5 w-50 mx-auto">
+        <Card className="mb-5 mx-auto">
           <Card.Title>
             <h1 className="display-5 d-flex justify-content-center">
               Top Rated Products ⬇️
