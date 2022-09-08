@@ -22,13 +22,12 @@ const ShippingScreen = ({ history }) => {
   const [address, setAddress] = useState(shippingAddress.address)
   const [city, setCity] = useState(shippingAddress.city)
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-  const [country, setCountry] = useState(shippingAddress.country)
 
   const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(saveShippingAddress({ address, city, postalCode, country }))
+    dispatch(saveShippingAddress({ address, city, postalCode }))
     history.push('/payment')
   }
 
@@ -72,17 +71,7 @@ const ShippingScreen = ({ history }) => {
               onChange={(e) => setPostalCode(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <Form.Group controlId='country' className='mb-2'>
-            <Form.Label>Country</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Enter Country'
-              value={country}
-              required
-              onChange={(e) => setCountry(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-          <Button type='submit' variant='primary' className='mt-2'>
+          <Button type='submit' variant='primary' className='mt-2 rounded'>
             Continue
           </Button>
         </Form>

@@ -123,7 +123,7 @@ const ProfileScreen = ({ location, history, match }) => {
               type='submit'
               variant='primary'
               className='my-2 d-flex
-              justify-content-end'
+              justify-content-end rounded'
             >
               Update
             </Button>
@@ -139,8 +139,8 @@ const ProfileScreen = ({ location, history, match }) => {
             <Table
               striped='true'
               bordered='true'
-              responsive='true'
-              className='table-md'
+              responsive='sm'
+              className='table-sm'
             >
               <thead>
                 <tr>
@@ -169,7 +169,7 @@ const ProfileScreen = ({ location, history, match }) => {
                     </td>
                     <td>
                       <LinkContainer to={`order/${order._id}`}>
-                        <Button variant='light'>Details</Button>
+                        <Button variant='light' className='btn btn-sm rounded'>Details</Button>
                       </LinkContainer>
                     </td>
                   </tr>

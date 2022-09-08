@@ -28,54 +28,62 @@ const App = () => {
     <>
       <Helmet>
         <title>Welcome to Auto Junction</title>
-        <meta name='description' content='Helmet application' />
+        <meta name="description" content="Helmet application" />
       </Helmet>
       <Router>
         <Header />
-        <main className='py-3'>
+        <main className="py-3">
           <Container>
-            <Route path='/order/:id' component={OrderScreen} />
-            <Route path='/placeorder' component={PlaceOrderScreen} />
-            <Route path='/shipping' component={ShippingScreen} />
-            <Route path='/payment' component={PaymentScreen} />
-            <Route path='/login' component={LoginScreen} />
-            <Route path='/register' component={RegisterScreen} />
-            <Route path='/profile' component={ProfileScreen} />
-            <Route path='/product/:id' component={ProductScreen} />
-            <Route path='/:category' component={CategorizedProductsScreen} />
-            <Route path='/cart/:id?' component={CartScreen} />
-            <Route path='/admin/userlist' component={UserListScreen} />
-            <Route path='/admin/user/:id/edit' component={UserEditScreen} />
+            <Route path="/order/:id" component={OrderScreen} />
+            <Route path="/placeorder" component={PlaceOrderScreen} />
+            <Route path="/shipping" component={ShippingScreen} />
+            <Route path="/payment" component={PaymentScreen} />
+            <Route path="/login" component={LoginScreen} />
+            <Route path="/register" component={RegisterScreen} />
+            <Route path="/profile" component={ProfileScreen} />
+            <Route path="/product/:id" component={ProductScreen} />
+            <Route path="/cart/:id?" component={CartScreen} />
+            <Route path="/admin/userlist" component={UserListScreen} />
+            <Route path="/admin/user/:id/edit" component={UserEditScreen} />
             <Route
-              path='/admin/productlist'
+              path="/admin/productlist"
               component={ProductListScreen}
               exact
             />
             <Route
-              path='/admin/productlist/:pageNumber'
+              path="/admin/productlist/:pageNumber"
               component={ProductListScreen}
               exact
             />
             <Route
-              path='/admin/product/:id/edit'
+              path="/admin/product/:id/edit"
               component={ProductEditScreen}
             />
-            <Route path='/admin/orderlist' component={OrderListScreen} />
-            <Route path='/search/:keyword' component={SearchedProductScreen} exact />
-            <Route path='/page/:pageNumber' component={HomeScreen} exact />
+            <Route path="/admin/orderlist" component={OrderListScreen} />
             <Route
-              path='/search/:keyword/page/:pageNumber'
+              path="/search/:keyword"
+              component={SearchedProductScreen}
+              exact
+            />
+            <Route path="/page/:pageNumber" component={HomeScreen} exact />
+            <Route
+              path="/search/:keyword/page/:pageNumber"
               component={HomeScreen}
               exact
             />
-            <Route path='/about' component={AboutUsScreen} exact />
-            <Route path='/' component={HomeScreen} exact />
+            <Route path="/about" component={AboutUsScreen} exact />
+            <Route
+              path="/:category"
+              component={CategorizedProductsScreen}
+              exact
+            />
+            <Route path="/" component={HomeScreen} exact />
           </Container>
         </main>
         <Footer />
       </Router>
     </>
-  )
+  );
 }
 
 export default App

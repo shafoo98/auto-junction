@@ -45,7 +45,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
         '\n \n \n' +
         'Please click on the order link below to see your order' + 
         '\n \n \n' +
-        `Order link: 'https://auto-junction.herokuapp.com/order/${order._id}'` +
+        `Order link: 'http://auto-junction-store.com/order/${order._id}'` +
         '\n \n' +
         'For any queries please call at the number: 01792651900' +
         '\n \n' +

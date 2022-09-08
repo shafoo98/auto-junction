@@ -28,14 +28,15 @@ const CategorizedProductsScreen = ({ history, match }) => {
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
+    } else {
+      dispatch(listProducts(keyword, pageNumber));
     }
-    dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, history, keyword, pageNumber, userInfo]);
 
   return (
     <>
       <Helmet>
-        <title>Auto Junction</title>
+        <title>Auto Junction: Category/Products</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
       {loading ? (
@@ -45,19 +46,20 @@ const CategorizedProductsScreen = ({ history, match }) => {
       ) : (
         <>
           <Row>
-            {products.map((product) =>
-              category === product.category && (
-                <Col key={product._id} sm={12} md={6} lg={4}>
-                  <Product product={product} />
-                </Col>
-              ) 
+            {products.map(
+              (product) =>
+                category === product.category && (
+                  <Col key={product._id} sm={12} md={6} lg={4}>
+                    <Product product={product} />
+                  </Col>
+                )
             )}
           </Row>
           <Paginate
             pages={pages}
             page={page}
             keyword={""}
-            category={category ? category : ''}
+            category={category ? category : ""}
           ></Paginate>
         </>
       )}

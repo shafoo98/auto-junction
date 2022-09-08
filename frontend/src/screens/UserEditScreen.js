@@ -49,7 +49,7 @@ const UserEditScreen = ({ match, history }) => {
   }
   return (
     <>
-      <Link to='/admin/userlist' className='btn btn-light my-3'>
+      <Link to='/admin/userlist' className='btn btn-light my-3 rounded'>
         Go back
       </Link>
       <FormContainer>
@@ -85,7 +85,7 @@ const UserEditScreen = ({ match, history }) => {
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Button type='submit' variant='primary' className='my-2'>
+              <Button type='submit' variant='primary' className='my-2 rounded'>
                 Edit
               </Button>
             </Form>

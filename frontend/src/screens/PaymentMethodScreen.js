@@ -60,7 +60,7 @@ const PaymentScreen = ({ history }) => {
               ></Form.Check>
             </Col>
           </Form.Group>
-          <Button type='submit' variant='primary' className='mt-4'>
+          <Button type='submit' variant='primary' className='mt-4 rounded'>
             Continue
           </Button>
         </Form>

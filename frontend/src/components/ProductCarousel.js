@@ -38,7 +38,7 @@ const ProductCarousel = () => {
           <Row>
             <Link to={`/product/${product._id}`}>
               <Carousel.Caption className="carousel-caption mb-2">
-                <h2 className="fs-2">
+                <h2 className="fs-5">
                   {product.name} (৳{product.price} BDT)
                 </h2>
               </Carousel.Caption>
@@ -48,11 +48,12 @@ const ProductCarousel = () => {
             <Col>
               <Image
                 className="d-block"
-                style={{ width: "25rem", height: "15rem" }}
+                style={{ width: "25rem", height: "25rem" }}
                 src={product.image}
                 alt={product.name}
                 rounded={false}
                 fluid={false}
+                loading='lazy'
               />
             </Col>
           </Row>

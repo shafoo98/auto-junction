@@ -94,7 +94,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Link to='/admin/productlist' className='btn btn-light my-3'>
+      <Link to='/admin/productlist' className='btn btn-light my-3 rounded'>
         Go Back
       </Link>
       <FormContainer>
@@ -192,7 +192,7 @@ const ProductEditScreen = ({ match, history }) => {
               <Button
                 type='submit'
                 variant='primary'
-                className='btn-md w-100 mt-3'
+                className='btn-md w-100 mt-3 rounded'
               >
                 Update
               </Button>
