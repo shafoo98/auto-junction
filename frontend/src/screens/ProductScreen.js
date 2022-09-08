@@ -148,7 +148,7 @@ const ProductScreen = ({ history, match }) => {
 
                   <ListGroup.Item>
                     <Button
-                      className="w-100 rounded"
+                      className="w-100 rounded my-3"
                       onClick={addToCartHandler}
                       variant="dark"
                       block

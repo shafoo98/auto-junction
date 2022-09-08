@@ -3,6 +3,9 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_REQUEST,
+  CATEGORY_PRODUCT_LIST_FAIL,
+  CATEGORY_PRODUCT_LIST_REQUEST,
+  CATEGORY_PRODUCT_LIST_SUCCESS,
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_REQUEST,
@@ -43,6 +46,26 @@ export const listProducts =
       })
     }
   }
+
+  export const listCategoryProducts =
+  (category = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: CATEGORY_PRODUCT_LIST_REQUEST })
+      const { data } = await axios.get(
+        `/api/products/category?category=${category}`
+      )
+      dispatch({ type: CATEGORY_PRODUCT_LIST_SUCCESS, payload: data })
+    } catch (error) {
+      dispatch({
+        type: CATEGORY_PRODUCT_LIST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  }  
 
 export const listProductDetails = (id) => async (dispatch) => {
   try {

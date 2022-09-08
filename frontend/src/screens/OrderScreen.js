@@ -125,6 +125,7 @@ const OrderScreen = ({ match, history }) => {
                             alt={item.name}
                             fluid='true'
                             rounded
+                            loading='lazy'
                           />
                         </Col>
                         <Col>

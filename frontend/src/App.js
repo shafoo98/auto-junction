@@ -73,7 +73,7 @@ const App = () => {
             />
             <Route path="/about" component={AboutUsScreen} exact />
             <Route
-              path="/:category"
+              path="/category/:category"
               component={CategorizedProductsScreen}
               exact
             />

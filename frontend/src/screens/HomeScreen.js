@@ -73,7 +73,7 @@ const HomeScreen = ({ history, match }) => {
           {categories.map((category) => (
             <>
               <Col sm={12} md={6} lg={4}>
-                <Link to={`/${category}`} style={{'textDecoration': 'none'}}>
+                <Link to={`/category/${category}`} style={{'textDecoration': 'none'}}>
                   <Card className="my-2 p-2 w-100 rounded shadow-lg">
                     <Card.Body>
                       <Card.Text className="fs-3 text-center">
