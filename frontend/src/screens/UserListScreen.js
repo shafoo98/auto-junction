@@ -51,7 +51,7 @@ const UserListScreen = ({ history }) => {
           striped='true'
           bordered='true'
           hover='true'
-          responsive='true'
+          responsive='sm'
           className='table-sm'
         >
           <thead>

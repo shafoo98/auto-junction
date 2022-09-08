@@ -42,7 +42,6 @@ const ProductListScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
-
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login')
     }
@@ -104,7 +103,7 @@ const ProductListScreen = ({ history, match }) => {
             striped='true'
             bordered='true'
             hover='true'
-            responsive='true'
+            responsive='sm'
             className='table-sm mt-4'
           >
             <thead>

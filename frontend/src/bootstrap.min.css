@@ -11,9 +11,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;400;500;700&display=swap');
-
-:root {
+ @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap');:root {
     --bs-blue: #378dfc;
     --bs-indigo: #6610f2;
     --bs-purple: #5b62f4;
@@ -73,11 +71,6 @@
     box-sizing: border-box
 }
 
-@media (prefers-reduced-motion:no-preference) {
-    :root {
-        scroll-behavior: smooth
-    }
-}
 
 body {
     margin: 0;
@@ -88,8 +81,7 @@ body {
     color: var(--bs-body-color);
     text-align: var(--bs-body-text-align);
     background-color: var(--bs-body-bg);
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent
+
 }
 
 hr {
@@ -195,8 +187,6 @@ abbr[title] {
     -webkit-text-decoration: underline dotted;
     text-decoration: underline dotted;
     cursor: help;
-    -webkit-text-decoration-skip-ink: none;
-    text-decoration-skip-ink: none
 }
 
 address {
@@ -355,7 +345,6 @@ caption {
 
 th {
     text-align: inherit;
-    text-align: -webkit-match-parent
 }
 
 tbody,
@@ -2325,42 +2314,36 @@ progress {
 }
 
 .table-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch
+    overflow-x: auto
 }
 
 @media (max-width:575.98px) {
     .table-responsive-sm {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch
     }
 }
 
 @media (max-width:767.98px) {
     .table-responsive-md {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch
     }
 }
 
 @media (max-width:991.98px) {
     .table-responsive-lg {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch
     }
 }
 
 @media (max-width:1199.98px) {
     .table-responsive-xl {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch
     }
 }
 
 @media (max-width:1399.98px) {
     .table-responsive-xxl {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch
     }
 }
 
@@ -2710,8 +2693,6 @@ textarea.form-control-lg {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact
 }
 
 .form-check-input[type=checkbox] {
@@ -5588,7 +5569,6 @@ fieldset:disabled .btn {
     background-color: #d9e3f1;
     border: 0;
     border-radius: 0;
-    overflow-anchor: none;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, border-radius .15s ease
 }
 
@@ -13332,10 +13312,6 @@ fieldset:disabled .btn {
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, .2)
 }
 
-.dropdown-menu {
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px)
-}
 
 .nav-tabs {
     background-color: #d9e3f1;
@@ -13453,8 +13429,6 @@ fieldset:disabled .btn {
 
 .alert {
     box-shadow: 8px 8px 40px rgba(0, 0, 0, .15), inset 1px 1px 3px rgba(255, 255, 255, .5), inset -5px -5px 20px rgba(0, 0, 0, .05);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px)
 }
 
 .alert-primary {
@@ -13509,16 +13483,12 @@ fieldset:disabled .btn {
 .tooltip .arrow,
 .tooltip-inner {
     box-shadow: 8px 8px 40px rgba(0, 0, 0, .15), inset 1px 1px 3px rgba(255, 255, 255, .5), inset -5px -5px 20px rgba(0, 0, 0, .05);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px)
 }
 
 .modal-content,
 .popover,
 .toast {
     box-shadow: 8px 8px 40px rgba(0, 0, 0, .15), inset 1px 1px 3px rgba(255, 255, 255, .5), inset -5px -5px 20px rgba(0, 0, 0, .05);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px)
 }
 
 .progress {

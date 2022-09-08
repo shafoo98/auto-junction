@@ -1,21 +1,16 @@
-import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { React, useEffect } from "react";
+import { Link, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Row, Col, Card, Image, Carousel } from "react-bootstrap";
+import { Row, Col, Card, Container, Image } from "react-bootstrap";
 import ProductCarousel from "../components/ProductCarousel";
 import { Helmet } from "react-helmet";
+import SearchBox from "../components/SearchBox";
 
 const HomeScreen = ({ history, match }) => {
 
-  const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
-
   const categories = [
     "Engine Oil",
-    "Accesories",
+    "Accessories",
     "Filters",
     "Transmission Fluid",
     "Spark Plugs",
@@ -43,28 +38,22 @@ const HomeScreen = ({ history, match }) => {
         <title>Auto Junction: Home</title>
         <meta name="description" content="Helmet application" />
       </Helmet>
-      <div>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-          <Carousel.Item>
-            <Image
-              className="d-block w-100 h-50"
-              src="/uploads/Auto Junction Cover Photo.jpg"
-              alt="Cover Photo"
-              rounded='false'
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <Image
-              className="d-block w-100 h-50"
-              src="/uploads/Free Delivery Photo.jpg"
-              alt="Cover Photo"
-              rounded='false'
-            />
-          </Carousel.Item>
-        </Carousel>
+      <Container>
+        {userInfo && (
+          <Route
+            render={({ history }) => <SearchBox history={history}></SearchBox>}
+          ></Route>
+        )}
+      </Container>
+      <div className="mx-auto w-100 mt-5">
+        <Image
+          className="d-block w-100 h-100"
+          src="/uploads/Auto Junction Cover Photo.jpg"
+          alt="Cover Photo"
+        />
       </div>
       <div className="mt-5">
-        <Card className="my-2">
+        <Card className="my-2 shadow-lg">
           <Card.Title>
             <h1 className="display-1 d-flex justify-content-center">
               Top Rated Products
@@ -74,14 +63,17 @@ const HomeScreen = ({ history, match }) => {
         <ProductCarousel />
       </div>
       <div>
-        <h1 as="div" className="d-flex justify-content-center display-2">
+        <h1
+          as="div"
+          className="d-flex justify-content-center display-3 shadow-lg"
+        >
           SHOP BY CATEGORIES
         </h1>
-        <Row>
+        <Row className="mx-auto">
           {categories.map((category) => (
             <>
-              <Col sm={12} md={9} lg={6}>
-                <Link to={`/${category}`}>
+              <Col sm={12} md={6} lg={4}>
+                <Link to={`/${category}`} style={{'textDecoration': 'none'}}>
                   <Card className="my-2 p-2 w-100 rounded shadow-lg">
                     <Card.Body>
                       <Card.Text className="fs-3 text-center">
