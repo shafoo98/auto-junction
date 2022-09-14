@@ -66,7 +66,7 @@ const HomeScreen = ({ history, match }) => {
           <Accordion.Toggle
             as="h5"
             eventKey="0"
-            className="ms-5 display-5 text-center"
+            className="display-5 text-center"
             style={{ cursor: "pointer" }}
           >
             Shop By Categories ⬇️
