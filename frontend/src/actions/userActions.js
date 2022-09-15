@@ -139,6 +139,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       type: USER_DETAILS_SUCCESS,
       payload: data,
     })
+
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -177,6 +178,11 @@ export const updateUserDetails = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_SUCCESS,
       payload: data,
     })
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data,
+    })
+    localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     const message =
       error.response && error.response.data.message
