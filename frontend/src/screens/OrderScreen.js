@@ -125,6 +125,7 @@ const OrderScreen = ({ match, history }) => {
                             alt={item.name}
                             fluid='true'
                             rounded
+                            loading='lazy'
                           />
                         </Col>
                         <Col>
@@ -171,7 +172,7 @@ const OrderScreen = ({ match, history }) => {
               {loadingPay && <Loader></Loader>}
               {userInfo && userInfo.isAdmin && !order.isPaid && (
                 <Button
-                  className='btn btn-inline mb-4'
+                  className='btn-md btn-block my-4 rounded mx-5'
                   type='button'
                   onClick={payHandler}
                 >
@@ -181,7 +182,7 @@ const OrderScreen = ({ match, history }) => {
               {loadingDeliver && <Loader></Loader>}
               {userInfo && userInfo.isAdmin && !order.isDelivered && (
                 <Button
-                  className='btn btn-inline'
+                  className='btn-md btn-block rounded mx-5 mb-4'
                   type='button'
                   onClick={deliverHandler}
                 >

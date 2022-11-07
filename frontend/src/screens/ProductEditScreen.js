@@ -56,7 +56,7 @@ const ProductEditScreen = ({ match, history }) => {
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0]
     const formData = new FormData()
-    formData.append('image', file)
+    formData.append('photo', file)
     setUploading(true)
 
     try {
@@ -94,7 +94,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Link to='/admin/productlist' className='btn btn-light my-3'>
+      <Link to='/admin/productlist' className='btn btn-light my-3 rounded'>
         Go Back
       </Link>
       <FormContainer>
@@ -182,7 +182,7 @@ const ProductEditScreen = ({ match, history }) => {
               <Form.Group controlId='description'>
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                  type='text'
+                  as="textarea"
                   placeholder='Enter description'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -192,7 +192,7 @@ const ProductEditScreen = ({ match, history }) => {
               <Button
                 type='submit'
                 variant='primary'
-                className='btn-md w-100 mt-3'
+                className='btn-md w-100 mt-3 rounded'
               >
                 Update
               </Button>

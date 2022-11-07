@@ -104,7 +104,7 @@ const RegisterScreen = ({ location, history }) => {
             ></Form.Control>
           </Form.Group>
           <div className='d-grid col-6 mx-auto'>
-            <Button type='submit' variant='primary' className='my-4'>
+            <Button type='submit' variant='primary' className='my-4 rounded'>
               Register
             </Button>
           </div>

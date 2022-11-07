@@ -42,7 +42,6 @@ const ProductListScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
-
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login')
     }
@@ -81,7 +80,7 @@ const ProductListScreen = ({ history, match }) => {
           <h1>Products</h1>
         </Col>
         <Col className='text-end'>
-          <Button clasName='my-3' onClick={createProductHandler}>
+          <Button className='my-3 rounded shadow-lg' onClick={createProductHandler}>
             <i className='fas fa-plus'></i> Create Product
           </Button>
         </Col>
@@ -104,7 +103,7 @@ const ProductListScreen = ({ history, match }) => {
             striped='true'
             bordered='true'
             hover='true'
-            responsive='true'
+            responsive='sm'
             className='table-sm mt-4'
           >
             <thead>
@@ -129,13 +128,13 @@ const ProductListScreen = ({ history, match }) => {
                   <td>{product.countInStock}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant='light' className='btn-sm'>
+                      <Button variant='light' className='btn-sm rounded'>
                         <i className='fas fa-edit'></i>
                       </Button>
                     </LinkContainer>
                     <Button
                       variant='danger'
-                      className='btn-sm'
+                      className=' ms-2 btn-sm rounded'
                       onClick={() => deleteHandler(product._id)}
                     >
                       <i className='fas fa-trash'></i>
