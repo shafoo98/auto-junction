@@ -42,9 +42,9 @@ const HomeScreen = ({ history, match }) => {
   const { loading, error, products } = productTopRated;
 
   useEffect(() => {
-    if (!userInfo) {
-      history.push("/login");
-    } 
+    // if (!userInfo) {
+    //   history.push("/login");
+    // } 
     dispatch(listTopProducts());
   }, [dispatch, history, userInfo]);
 
