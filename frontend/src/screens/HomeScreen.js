@@ -135,7 +135,7 @@ const HomeScreen = ({ history, match }) => {
                 <ListGroup>
                   <ListGroup.Item>
                     <Link
-                      to={`/category/${category}`}
+                      to={`/category/${category.name}`}
                       style={{ textDecoration: 'none', cursor: 'pointer' }}
                       className='d-flex flex-column justify-content-between'
                     >
