@@ -153,7 +153,7 @@ const PlaceOrderScreen = ({ history }) => {
                 <Button
                   type='button'
                   className='btn-block w-100 rounded mb-4'
-                  disabled={cart.cartItems === 0}
+                  disabled={cart.cartItems === 0 || success}
                   onClick={placeOrderHandler}
                 >
                   Place Order

@@ -24,6 +24,9 @@ import {
   USER_EDIT_REQUEST,
   USER_EDIT_SUCCESS,
   USER_EDIT_FAIL,
+  USER_PASSWORD_RESET_REQUEST,
+  USER_PASSWORD_RESET_FAIL,
+  USER_PASSWORD_RESET_SUCCESS
 } from '../constants/userConstants'
 
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
@@ -55,6 +58,33 @@ export const login = (email, password) => async (disptach) => {
   } catch (error) {
     disptach({
       type: USER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const resetUserPassword = (email, password) => async (disptach) => {
+  try {
+    disptach({
+      type: USER_PASSWORD_RESET_REQUEST,
+    })
+
+    const { data } = await axios.post(
+      '/api/users/reset-password',
+      { email, password },
+    )
+
+    disptach({
+      type: USER_PASSWORD_RESET_SUCCESS,
+      payload: data,
+    })
+
+  } catch (error) {
+    disptach({
+      type: USER_PASSWORD_RESET_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

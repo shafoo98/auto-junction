@@ -24,6 +24,9 @@ import {
   USER_EDIT_REQUEST,
   USER_EDIT_SUCCESS,
   USER_EDIT_RESET,
+  USER_PASSWORD_RESET_FAIL,
+  USER_PASSWORD_RESET_REQUEST,
+  USER_PASSWORD_RESET_SUCCESS
 } from '../constants/userConstants'
 
 export const userLoginReducer = (state = {}, action) => {
@@ -36,6 +39,19 @@ export const userLoginReducer = (state = {}, action) => {
       return { loading: false, error: action.payload }
     case USER_LOGOUT:
       return {}
+    default:
+      return state
+  }
+}
+
+export const userPasswordUpdateReducer = (state = { }, action) => {
+  switch (action.type) {
+    case USER_PASSWORD_RESET_REQUEST:
+      return { ...state, loading: true }
+    case USER_PASSWORD_RESET_SUCCESS:
+      return { loading: false, success: true }
+    case USER_PASSWORD_RESET_FAIL:
+      return { loading: false, error: action.payload }
     default:
       return state
   }

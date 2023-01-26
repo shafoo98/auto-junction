@@ -35,7 +35,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
       <Nav.Item>
         {step4 ? (
           <LinkContainer to='/placeorder'>
-            <Nav.Link>Place order</Nav.Link>
+            <Nav.Link>Place Order</Nav.Link>
           </LinkContainer>
         ) : (
           <Nav.Link disabled='true'>Place Order</Nav.Link>
