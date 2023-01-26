@@ -1,44 +1,40 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { login } from '../actions/userActions'
+import { resetUserPassword } from '../actions/userActions'
 import { Helmet } from 'react-helmet'
 
-const LoginScreen = ({ location, history }) => {
+const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin)
+  const userPasswordUpdate = useSelector((state) => state.userPasswordUpdate);
 
-  const { loading, error, userInfo } = userLogin
-
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const { success, error, loading } = userPasswordUpdate;
 
   useEffect(() => {
-    if (userInfo) {
-      history.push(redirect)
+    if (success) {
+      history.push('/login')
     }
-  }, [history, userInfo, redirect])
+  }, [history, success])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    //Dispatch login here
-    dispatch(login(email, password))
+    dispatch(resetUserPassword(email, password))
   }
   return (
     <>
       <Helmet>
-        <title>Login</title>
+        <title>Reset Password</title>
         <meta name='description' content='Helmet application' />
       </Helmet>
       <FormContainer>
-        <h1 className='mt-5'>Sign In</h1>
+        <h1 className='mt-5'>Reset Password</h1>
         {error && <Message variant='danger'>{error}</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
@@ -46,7 +42,7 @@ const LoginScreen = ({ location, history }) => {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type='email'
-              placeholder='Enter email'
+              placeholder='Enter your email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
@@ -55,35 +51,17 @@ const LoginScreen = ({ location, history }) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type='password'
-              placeholder='Enter password'
+              placeholder='Enter a new password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
           <div className='d-grid col-5 mx-auto'>
             <Button type='submit' variant='primary' className=' my-4 w-100 rounded'>
-              Sign In
+              Reset Password
             </Button>
           </div>
         </Form>
-        <Row classname='py-3 d-flex justify-content-between'>
-          <Col>
-            New Customer?{' '}
-            <Link
-              to={redirect ? `/register?redirect=${redirect}` : '/register'}
-            >
-              Register here
-            </Link>
-          </Col>
-          <Col>
-            Forgot Password?{' '}
-            <Link
-              to={redirect ? `/reset-password?redirect=${redirect}` : '/reset-password'}
-            >
-              Reset Here
-            </Link>
-          </Col>
-        </Row>
       </FormContainer>
     </>
   )
