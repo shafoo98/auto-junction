@@ -3,6 +3,7 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
 import sendOrderMail from '../utils/sendMail.js'
+import Mailgen from 'mailgen'
 
 // @desc Create a new order
 // @route GET /api/orders
@@ -34,23 +35,35 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
     const createdOrder = await order.save()
 
-    res.status(201).json(createdOrder)
+    let MailGenerator = new Mailgen({
+      theme: "default",
+      product: {
+        name: "Auto Junction",
+        link: "https://www.auto-junction-store.com"
+      }
+    })
+
+    let orderData = createdOrder.orderItems.map((orderItem) => {
+      return {name: orderItem.name, price: orderItem.price, quantity: orderItem.quantity}
+    })
+
+    let response = {
+      body: {
+        intro: `Order Summary  for Order No.${order._id}`,
+        table: {
+          data: orderData
+        },
+        outro: `Please click on the link: 'https://auto-junction-store.com/order/${order._id}' to view your order.`
+      }
+    }
+
+    let mail = MailGenerator.generate(response)
 
     sendOrderMail({
       from: process.env.COMPANY_EMAIL,
       to: `${req.user.email}`,
       subject: `Your order: ${order._id} has been placed and confirmed`,
-      text:
-        'Thank you for ordering from Auto Junction' +
-        '\n \n \n' +
-        'Please click on the order link below to see your order' + 
-        '\n \n \n' +
-        `Order link: 'http://auto-junction-store.com/order/${order._id}'` +
-        '\n \n' +
-        'For any queries please call at the number: 01792651900' +
-        '\n \n' +
-        'Yours Sincerely, \n' +
-        'Auto Junction Team',
+      html: mail,
     })
     sendOrderMail({
       from: process.env.COMPANY_EMAIL,
@@ -60,6 +73,9 @@ const addOrderItems = asyncHandler(async (req, res) => {
         `The order was placed by the customer with the email ${req.user.email}` +
         `\n Please look at the orders page with the order no.${order._id} and contact with the customer if needed \n`,
     })
+
+    res.status(201).json(createdOrder)
+
   }
 })
 
