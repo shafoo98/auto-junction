@@ -56,8 +56,13 @@ const ProductScreen = ({ history, match }) => {
       setComment('')
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
     }
+<<<<<<< HEAD
     dispatch(listProductDetails(match.params.id))
   }, [history, match, successProductReview, userInfo, dispatch])
+=======
+    dispatch(listProductDetails(match.params.id));
+  }, [dispatch, history, match, successProductReview, userInfo]);
+>>>>>>> 24ad99c94d39a6122b5f8b5163a4c010bb3d8398
 
   return (
     <>

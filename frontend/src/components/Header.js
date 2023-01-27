@@ -21,11 +21,19 @@ const Header = () => {
           <LinkContainer to='/'>
             <Navbar.Brand className='text-center'>
               <img
+<<<<<<< HEAD
                 alt='Logo'
                 src='..\uploads\AJ-Logo.png'
                 width='100'
                 height='100'
                 className='d-inline-block align-top'
+=======
+                alt="Logo"
+                src="./uploads/AJ-logo.png"
+                width="100"
+                height="100"
+                className="d-inline-block align-top"
+>>>>>>> 24ad99c94d39a6122b5f8b5163a4c010bb3d8398
               />
             </Navbar.Brand>
           </LinkContainer>
