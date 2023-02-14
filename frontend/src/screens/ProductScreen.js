@@ -136,11 +136,17 @@ const ProductScreen = ({ history, match }) => {
                             onChange={(e) => setQuantity(e.target.value)}
                           >
                             {[...Array(product.countInStock).keys()].map(
-                              (x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              )
+                              (x) => {
+                                if (x > 2) {
+                                  return ''
+                                } else {
+                                  return (
+                                    <option key={x + 1} value={x + 1}>
+                                      {x + 1}
+                                    </option>
+                                  )
+                                }
+                              }
                             )}
                           </Form.Control>
                         </Col>
