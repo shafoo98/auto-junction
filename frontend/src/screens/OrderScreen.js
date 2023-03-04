@@ -41,6 +41,11 @@ const OrderScreen = ({ match, history }) => {
     if (!userInfo) {
       history.push('/login')
     }
+
+    if (!order) {
+      history.push('/')
+    }
+
     if (!order || successDeliver || successPay || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
@@ -71,23 +76,52 @@ const OrderScreen = ({ match, history }) => {
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2 className='mb-4'>Shipping</h2>
-              <p>
-                <strong>Name: </strong> {order.user.name}
-              </p>
-              <p>
-                <strong>Email: </strong>
-                <a href={`mailto${order.user.email}`}>{order.user.email}</a>
-              </p>
-              <p>
-                <strong>Phone Number: </strong> {order.user.phoneNumber}
-              </p>
-              <p>
-                <strong>Address: </strong>
-                {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
-                {order.shippingAddress.postalCode},{' '}
-                {order.shippingAddress.country}.
-              </p>
+              {userInfo.isAdmin ? (
+                <>
+                  <h2 className='mb-2'>Client Information</h2>
+                  <p>
+                    {' '}
+                    <strong>Name:</strong>{' '}
+                    {order.shippingAddress.clientName ?? order.user.name}
+                  </p>
+                  <p>
+                    {' '}
+                    <strong>Phone Number:</strong>{' '}
+                    {order.shippingAddress.clientPhoneNumber ??
+                      order.user.phoneNumber}
+                  </p>
+                  <p>
+                    {' '}
+                    <strong>Email: </strong> {order.user.email}
+                  </p>
+                  <p>
+                    <strong>Address: </strong>
+                    {order.shippingAddress.address},{' '}
+                    {order.shippingAddress.city}{' '}
+                    {order.shippingAddress.postalCode},{' '}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h2 className='mb-4'>Shipping</h2>
+                  <p>
+                    <strong>Name: </strong> {order.user.name}
+                  </p>
+                  <p>
+                    <strong>Email: </strong>
+                    <a href={`mailto${order.user.email}`}>{order.user.email}</a>
+                  </p>
+                  <p>
+                    <strong>Phone Number: </strong> {order.user.phoneNumber}
+                  </p>
+                  <p>
+                    <strong>Address: </strong>
+                    {order.shippingAddress.address},{' '}
+                    {order.shippingAddress.city}{' '}
+                    {order.shippingAddress.postalCode},{' '}
+                  </p>
+                </>
+              )}
               {order.isDelivered ? (
                 <Message variant='success'>
                   Delivered on {order.deliveredAt.substring(0, 10)}

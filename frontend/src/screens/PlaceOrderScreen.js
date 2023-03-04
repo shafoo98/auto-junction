@@ -76,13 +76,34 @@ const PlaceOrderScreen = ({ history }) => {
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2 className='mb-2'>Shipping</h2>
-              <p>
-                <strong>Address: </strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                {cart.shippingAddress.postalCode},{' '}
-                {cart.shippingAddress.country}.
-              </p>
+              {userInfo.isAdmin ? (
+                <>
+                  <h2 className='mb-2'>Client Information</h2>
+                  <p>
+                    {' '}
+                    <strong>Name:</strong> {cart.shippingAddress.clientName}
+                  </p>
+                  <p>
+                    {' '}
+                    <strong>Phone Number:</strong>{' '}
+                    {cart.shippingAddress.clientPhoneNumber}
+                  </p>
+                  <p>
+                    <strong>Address: </strong>
+                    {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
+                    {cart.shippingAddress.postalCode},{' '}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h2 className='mb-2'>Shipping</h2>
+                  <p>
+                    <strong>Address: </strong>
+                    {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
+                    {cart.shippingAddress.postalCode}{' '}
+                  </p>
+                </>
+              )}
             </ListGroup.Item>
             <ListGroup.Item>
               <h2 className='mb-2'>Payment Method</h2>
