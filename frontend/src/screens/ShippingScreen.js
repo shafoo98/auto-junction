@@ -70,7 +70,9 @@ const ShippingScreen = ({ history }) => {
               <Form.Group controlId='clientPhoneNumber' className='mb-2'>
                 <Form.Label>Client Phone Number</Form.Label>
                 <Form.Control
-                  type='number'
+                  type='tel'
+                  minLength={11}
+                  maxLength={14}
                   placeholder='Enter Client Phone Number'
                   value={clientPhoneNumber}
                   required

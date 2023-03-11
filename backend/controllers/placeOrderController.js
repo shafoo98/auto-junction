@@ -3,6 +3,7 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
 import sendOrderMail from '../utils/sendMail.js'
+import generateInvoice from '../utils/generateInvoice.js'
 import Mailgen from 'mailgen'
 
 // @desc Create a new order
@@ -35,35 +36,59 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
     const createdOrder = await order.save()
 
-    let MailGenerator = new Mailgen({
-      theme: "default",
-      product: {
-        name: "Auto Junction",
-        link: "https://www.auto-junction-store.com"
+    let orderData = createdOrder.orderItems.map((orderItem) => {
+      return {
+        name: orderItem.name,
+        price: orderItem.price,
+        quantity: orderItem.quantity,
       }
     })
 
-    let orderData = createdOrder.orderItems.map((orderItem) => {
-      return {name: orderItem.name, price: orderItem.price, quantity: orderItem.quantity}
+    let MailGenerator = new Mailgen({
+      theme: 'default',
+      product: {
+        name: 'Auto Junction',
+        link: 'https://www.auto-junction-store.com',
+        logo: 'https://www.auto-junction-store.com/uploads/AJ-Logo.png',
+        logoHeight: '50px',
+      },
     })
 
     let response = {
       body: {
-        intro: `Order Summary  for Order No.${order._id}`,
-        table: {
-          data: orderData
-        },
-        outro: `Please click on the link: 'https://auto-junction-store.com/order/${order._id}' to view your order.`
-      }
+        intro: [
+          'Your Order has been placed and is currently under processing.',
+          `Order Summary: `,
+          `Id: ${createdOrder._id}`,
+        ],
+        table: [
+          {
+            data: orderData,
+          },
+        ],
+        outro: [
+          `Your total for the order is ${createdOrder.totalPrice} BDT`,
+          `Payment Method: ${createdOrder.paymentMethod}`,
+          'Please find attached your order invoice with this email',
+          'Thanks for shopping with Auto Junction',
+        ],
+      },
     }
 
-    let mail = MailGenerator.generate(response)
+    let htmlMail = MailGenerator.generate(response)
+    let plainTextMail = MailGenerator.generatePlaintext(response)
+
+    const pdfBuffer = await generateInvoice(htmlMail)
 
     sendOrderMail({
       from: process.env.COMPANY_EMAIL,
       to: `${req.user.email}`,
       subject: `Your order: ${order._id} has been placed and confirmed`,
-      html: mail,
+      html: htmlMail,
+      plainTextMail: plainTextMail,
+      attachments: [
+        { filename: `invoice-${createdOrder._id}.pdf`, content: pdfBuffer },
+      ],
     })
     sendOrderMail({
       from: process.env.COMPANY_EMAIL,
@@ -75,7 +100,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
     })
 
     res.status(201).json(createdOrder)
-
   }
 })
 

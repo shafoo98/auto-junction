@@ -32,6 +32,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
     "nodemailer": "^6.7.2",
+    "puppeteer": "^19.7.4",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.7.1",
     "react-messenger-send-to-messenger": "^0.2.0",

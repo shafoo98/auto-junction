@@ -31,6 +31,15 @@ const OrderScreen = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const disableBack = () => {
+    window.history.forward()
+  }
+
+  setTimeout(disableBack(), 0)
+  window.onunload = function () {
+    return null
+  }
+
   if (!loading) {
     order.itemsPrice = order.orderItems
       .reduce((acc, item) => acc + item.price * item.quantity, 0)
@@ -42,16 +51,25 @@ const OrderScreen = ({ match, history }) => {
       history.push('/login')
     }
 
-    if (!order) {
-      history.push('/')
-    }
-
     if (!order || successDeliver || successPay || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
     }
-  }, [dispatch, orderId, order, userInfo, successDeliver, history, successPay])
+
+    if (error) {
+      history.push('/')
+    }
+  }, [
+    dispatch,
+    orderId,
+    order,
+    userInfo,
+    successDeliver,
+    history,
+    successPay,
+    error,
+  ])
 
   const deliverHandler = () => {
     dispatch(deliverOrder(order))

@@ -13,6 +13,9 @@ node_modules/
 /frontend/build 
 
 # misc
+
+invoice.pdf
+
 .DS_Store
 .env
 .env.local
