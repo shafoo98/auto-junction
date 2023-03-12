@@ -26,14 +26,14 @@ const HomeScreen = ({ history, match }) => {
         'https://res.cloudinary.com/auto-junction-store/image/upload/c_scale,h_50,w_50/v1672699172/linear-engine-oil-icon-general-outline-collection-thin-line-isolated-white-background-trendy-illustration-140058334_mpntes.jpg',
     },
     {
+      name: 'Engine Oil and Filters Packages',
+      image:
+        'https://res.cloudinary.com/auto-junction-store/image/upload/v1678651557/Engine_Oil_and_Filter_piwdqu.png',
+    },
+    {
       name: 'Accessories',
       image:
         'https://res.cloudinary.com/auto-junction-store/image/upload/c_scale,h_50,w_50/v1672698408/wrench-outline-msidiqf-wrench-industrial-vector-icons-msidiqf-142114512_iuarfr.jpg',
-    },
-    {
-      name: 'Filters',
-      image:
-        'https://res.cloudinary.com/auto-junction-store/image/upload/v1672696594/car-oil-filter-linear-icon-white-background-editable-stroke-162738209_sogcvo.jpg',
     },
     {
       name: 'Transmission Fluid',
@@ -141,8 +141,8 @@ const HomeScreen = ({ history, match }) => {
                     >
                       <img
                         style={{
-                          width: '50px',
-                          height: '50px',
+                          width: '75px',
+                          height: '75px',
                           margin: '0 auto',
                         }}
                         src={category.image}

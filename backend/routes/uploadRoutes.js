@@ -13,8 +13,13 @@ cloudinary.config({
 
 router.route("/").post((req, res, next) => {
   const file = req.files.photo;
-  cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
-    res.status(200).json(result.url)
+  console.log(file.tempFilePath)
+ cloudinary.uploader.upload(file.tempFilePath,  async (err, result) => {
+    try {
+      res.status(200).json(result.url)
+    } catch (error) {
+      console.log(err)
+    }
   });
 });
 
