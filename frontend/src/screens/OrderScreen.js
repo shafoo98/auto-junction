@@ -221,6 +221,14 @@ const OrderScreen = ({ match, history }) => {
                   <Col>{order.totalPrice}৳</Col>
                 </Row>
               </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>
+                    Eligible For Free Scanning:{' '}
+                    {order.orderItems.length >= 5 ? 'Eligible' : 'Not Eligible'}
+                  </Col>
+                </Row>
+              </ListGroup.Item>
               {loadingPay && <Loader></Loader>}
               {userInfo && userInfo.isAdmin && !order.isPaid && (
                 <Button

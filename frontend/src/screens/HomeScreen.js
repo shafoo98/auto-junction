@@ -17,6 +17,7 @@ import { listTopProducts } from '../actions/productActions'
 import Product from '../components/Product'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import BannerItem from '../components/BannerItem'
 
 const HomeScreen = ({ history, match }) => {
   const categories = [
@@ -26,7 +27,7 @@ const HomeScreen = ({ history, match }) => {
         'https://res.cloudinary.com/auto-junction-store/image/upload/c_scale,h_50,w_50/v1672699172/linear-engine-oil-icon-general-outline-collection-thin-line-isolated-white-background-trendy-illustration-140058334_mpntes.jpg',
     },
     {
-      name: 'Engine Oil and Filters Packages',
+      name: 'Service Kits',
       image:
         'https://res.cloudinary.com/auto-junction-store/image/upload/v1678651557/Engine_Oil_and_Filter_piwdqu.png',
     },
@@ -159,24 +160,17 @@ const HomeScreen = ({ history, match }) => {
       </Accordion>
       <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
-          <div className='mx-auto w-100'>
-            <Image
-              className='d-block w-100 h-100'
-              src='/uploads/Auto Junction Cover Photo.jpg'
-              alt='Cover Photo'
-              rounded='false'
-            />
-          </div>
+          <BannerItem imagePath={'/uploads/Auto Junction Cover Photo.jpg'} />
         </Carousel.Item>
         <Carousel.Item>
-          <div className='mx-auto w-100 mt-5'>
-            <Image
-              className='d-block w-100 h-100'
-              src='/uploads/Free Delivery.png'
-              alt='Cover Photo'
-              rounded='false'
-            />
-          </div>
+          <BannerItem imagePath={'/uploads/Free Delivery.png'} />
+        </Carousel.Item>
+        <Carousel.Item>
+          <BannerItem
+            imagePath={
+              'https://res.cloudinary.com/auto-junction-store/image/upload/v1678818283/Engine_Scanning_Offer_yo4vh1.png'
+            }
+          />
         </Carousel.Item>
       </Carousel>
       <div className='mt-5'>

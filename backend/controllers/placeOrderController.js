@@ -69,7 +69,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
         outro: [
           `Your total for the order is ${createdOrder.totalPrice} BDT`,
           `Payment Method: ${createdOrder.paymentMethod}`,
-          'Please find attached your order invoice with this email',
           'Thanks for shopping with Auto Junction',
         ],
       },
@@ -80,24 +79,28 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
     const pdfBuffer = await generateInvoice(htmlMail)
 
-    sendOrderMail({
-      from: process.env.COMPANY_EMAIL,
-      to: `${req.user.email}`,
-      subject: `Your order: ${order._id} has been placed and confirmed`,
-      html: htmlMail,
-      plainTextMail: plainTextMail,
-      attachments: [
-        { filename: `invoice-${createdOrder._id}.pdf`, content: pdfBuffer },
-      ],
-    })
-    sendOrderMail({
-      from: process.env.COMPANY_EMAIL,
-      to: process.env.COMPANY_EMAIL,
-      subject: `An order: ${order._id} has been placed and confirmed`,
-      text:
-        `The order was placed by the customer with the email ${req.user.email}` +
-        `\n Please look at the orders page with the order no.${order._id} and contact with the customer if needed \n`,
-    })
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Email Sent')
+    } else {
+      sendOrderMail({
+        from: process.env.COMPANY_EMAIL,
+        to: `${req.user.email}`,
+        subject: `Your order: ${order._id} has been placed and confirmed`,
+        html: htmlMail,
+        plainTextMail: plainTextMail,
+        attachments: [
+          { filename: `invoice-${createdOrder._id}.pdf`, content: pdfBuffer },
+        ],
+      })
+      sendOrderMail({
+        from: process.env.COMPANY_EMAIL,
+        to: process.env.COMPANY_EMAIL,
+        subject: `An order: ${order._id} has been placed and confirmed`,
+        text:
+          `The order was placed by the customer with the email ${req.user.email}` +
+          `\n Please look at the orders table in profile page with the order no.${order._id} and contact with the customer if needed \n`,
+      })
+    }
 
     res.status(201).json(createdOrder)
   }
