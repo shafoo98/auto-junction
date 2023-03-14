@@ -79,9 +79,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
     const pdfBuffer = await generateInvoice(htmlMail)
 
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Email Sent')
-    } else {
       sendOrderMail({
         from: process.env.COMPANY_EMAIL,
         to: `${req.user.email}`,
@@ -100,7 +97,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
           `The order was placed by the customer with the email ${req.user.email}` +
           `\n Please look at the orders table in profile page with the order no.${order._id} and contact with the customer if needed \n`,
       })
-    }
+    
 
     res.status(201).json(createdOrder)
   }
