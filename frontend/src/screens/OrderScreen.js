@@ -109,10 +109,6 @@ const OrderScreen = ({ match, history }) => {
                       order.user.phoneNumber}
                   </p>
                   <p>
-                    {' '}
-                    <strong>Email: </strong> {order.user.email}
-                  </p>
-                  <p>
                     <strong>Address: </strong>
                     {order.shippingAddress.address},{' '}
                     {order.shippingAddress.city}{' '}
