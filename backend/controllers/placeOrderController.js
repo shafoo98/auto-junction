@@ -3,7 +3,7 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
 import sendOrderMail from '../utils/sendMail.js'
-import generateInvoice from '../utils/generateInvoice.js'
+import { createInvoice } from '../utils/createInvoice.js'
 import Mailgen from 'mailgen'
 
 // @desc Create a new order
@@ -35,6 +35,8 @@ const addOrderItems = asyncHandler(async (req, res) => {
     })
 
     const createdOrder = await order.save()
+
+    createInvoice(createdOrder, 'invoice.pdf')
 
     let orderData = createdOrder.orderItems.map((orderItem) => {
       return {
@@ -69,6 +71,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
         outro: [
           `Your total for the order is ${createdOrder.totalPrice} BDT`,
           `Payment Method: ${createdOrder.paymentMethod}`,
+          `Please find attached an invoice for your order`,
           'Thanks for shopping with Auto Junction',
         ],
       },
@@ -77,27 +80,24 @@ const addOrderItems = asyncHandler(async (req, res) => {
     let htmlMail = MailGenerator.generate(response)
     let plainTextMail = MailGenerator.generatePlaintext(response)
 
-    const pdfBuffer = await generateInvoice(htmlMail)
-
-      sendOrderMail({
-        from: process.env.COMPANY_EMAIL,
-        to: `${req.user.email}`,
-        subject: `Your order: ${order._id} has been placed and confirmed`,
-        html: htmlMail,
-        plainTextMail: plainTextMail,
-        attachments: [
-          { filename: `invoice-${createdOrder._id}.pdf`, content: pdfBuffer },
-        ],
-      })
-      sendOrderMail({
-        from: process.env.COMPANY_EMAIL,
-        to: process.env.COMPANY_EMAIL,
-        subject: `An order: ${order._id} has been placed and confirmed`,
-        text:
-          `The order was placed by the customer with the email ${req.user.email}` +
-          `\n Please look at the orders table in profile page with the order no.${order._id} and contact with the customer if needed \n`,
-      })
-    
+    sendOrderMail({
+      from: process.env.COMPANY_EMAIL,
+      to: `${req.user.email}`,
+      subject: `Your order: ${order._id} has been placed and confirmed`,
+      html: htmlMail,
+      plainTextMail: plainTextMail,
+      attachments: [
+        { filename: `invoice-${order._id}.pdf`, path: 'invoice.pdf' },
+      ],
+    })
+    sendOrderMail({
+      from: process.env.COMPANY_EMAIL,
+      to: process.env.COMPANY_EMAIL,
+      subject: `An order: ${order._id} has been placed and confirmed`,
+      text:
+        `The order was placed by the customer with the email ${req.user.email}` +
+        `\n Please look at the orders table in profile page with the order no.${order._id} and contact with the customer if needed \n`,
+    })
 
     res.status(201).json(createdOrder)
   }
