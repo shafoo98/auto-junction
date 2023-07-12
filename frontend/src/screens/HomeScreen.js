@@ -27,6 +27,11 @@ const HomeScreen = ({ history, match }) => {
         'https://res.cloudinary.com/auto-junction-store/image/upload/c_scale,h_50,w_50/v1672699172/linear-engine-oil-icon-general-outline-collection-thin-line-isolated-white-background-trendy-illustration-140058334_mpntes.jpg',
     },
     {
+      name: 'Filters',
+      image:
+        'https://asset.cloudinary.com/auto-junction-store/f5ba71ccdd941d47404fb7cfb7e457d4',
+    },
+    {
       name: 'Service Kits',
       image:
         'https://res.cloudinary.com/auto-junction-store/image/upload/v1678651557/Engine_Oil_and_Filter_piwdqu.png',
