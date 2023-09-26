@@ -29,7 +29,7 @@ const HomeScreen = ({ history, match }) => {
     {
       name: 'Filters',
       image:
-        'https://asset.cloudinary.com/auto-junction-store/f5ba71ccdd941d47404fb7cfb7e457d4',
+        'https://res.cloudinary.com/auto-junction-store/image/upload/v1689169386/Screenshot_2023-07-12_194056-removebg-preview_cibxlg.png',
     },
     {
       name: 'Service Kits',
